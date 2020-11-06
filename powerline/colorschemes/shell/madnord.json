@@ -1,0 +1,16 @@
+{
+	"name": "Mad Nord Theme for Shell",
+	"groups": {
+		"hostname":         { "fg": "nord13", "bg": "nord0", "attrs": [] },
+		"environment":      { "fg": "nord0", "bg": "nord14", "attrs": [] },
+		"mode":             { "fg": "nord14", "bg": "nord0", "attrs": ["bold"] },
+		"attached_clients": { "fg": "nord0", "bg": "nord14", "attrs": [] }
+	},
+	"mode_translations": {
+		"vicmd": {
+			"groups": {
+				"mode": {"fg": "nord0", "bg": "nord10", "attrs": ["bold"]}
+			}
+		}
+	}
+}

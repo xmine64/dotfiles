@@ -1,0 +1,20 @@
+{
+	"common": {
+		"term_truecolor": true
+	},
+	"ext": {
+		"shell": {
+			"colorscheme": "madnord",
+			"theme": "default",
+			"local_themes": {
+				"continuation": "continuation",
+				"select": "select"
+			}
+		},
+		"wm": {
+			"colorscheme": "madnord",
+			"theme": "default",
+			"update_interval": 2
+		}
+	}
+}

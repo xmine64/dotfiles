@@ -1,0 +1,27 @@
+configuration {
+  modi: "combi,drun,run,window,clipboard:env CM_LAUNCHER=rofi-script clipmenu";
+  combi-modi: "window,drun";
+
+  font: "monospace 12";
+
+  location: 2;
+
+  sidebar-mode: true;
+
+  drun-show-actions: true;
+
+  show-icons: true;
+  icon-theme: "Vimix";
+
+  window-thumbnail: true;
+
+  matching: "fuzzy";
+
+  kb-row-up: "Up,Control+p";
+  kb-row-down: "Super+Tab,Down,Control+n";
+  kb-row-tab: "";
+  kb-mode-next: "Tab,Alt+Right";
+  kb-mode-previous: "ISO_Left_Tab,Alt+Left";
+
+  theme: "~/.config/rofi/madnord.rasi";
+}

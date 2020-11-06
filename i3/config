@@ -1,0 +1,388 @@
+# i3 configuration file
+# By @the_madamin
+#
+# Colorscheme:         Nord
+# Compositor:          picom/compton
+# Menu:                rofi
+# Wallpaper setter:    nitrogen
+# Notification center: deadd
+# Clipboard manager:   clipmenud
+# Bluetooth daemon:    blueman
+# Polkit:              gnome-polkit
+# Power manager:       xfce4-power-manager
+# Network manager:     dhcpcd
+# Keyboard manager:    setxkbmap
+# Screenshot:          flameshot
+
+#
+# User Configurations:
+#
+
+set $mod              Mod4
+set $alt              Mod1
+set $font             monospace
+set $font_size        8
+set $font_size_i3bar  10
+set $kb_layout        us,ir
+set $resize_step      5
+set $resize_long_step 10
+
+# apps
+set $terminal         st
+set $fileman          pcmanfm
+set $browser          google-chrome-stable
+set $music            deadbeef
+set $mixer            st -e 'alsamixer'
+
+# daemons
+set $polkit           /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+set $notifyd          deadd-notification-center
+set $bluetooth        blueman
+set $clipman          clipmenud
+set $powerman         xfce4-power-manager
+set $screenshotd      flameshot
+
+# screenshot
+set $ss_clipboard     flameshot full -c
+set $ss_file          flameshot full -p ~/Pictures/Screenshots/
+set $ss_interactive   flameshot gui
+
+# exit commands
+set $lock             i3lock
+set $logout           i3-msg -t run_command exit
+set $switch_user      notify-send "SwitchUser is not implemented"
+set $suspend          systemctl suspend
+set $hibernate        systemctl hibernate
+set $reboot           systemctl reboot
+set $poweroff         systemctl poweroff
+
+# workspaces
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+
+# colorscheme
+set $nord0   #2E3440
+set $nord1   #3B4252
+set $nord2   #434C5E
+set $nord3   #4C566A
+set $nord4   #D8DEE9
+set $nord5   #E5E9F0
+set $nord6   #ECEFF4
+set $nord7   #8FBCBB
+set $nord8   #88C0D0
+set $nord9   #81A1C1
+set $nord10  #5E81AC
+set $nord11  #BF616A
+set $nord12  #D08770
+set $nord13  #EBCB8B
+set $nord14  #A3BE8C
+set $nord15  #B48EAD
+
+#
+# i3 Setup:
+#
+
+font pango: $font $font_size
+
+#workspace_layout tiling <stacking|tabbed>
+
+# border style <normal|1pixel|pixel xx|none|pixel>
+default_border           pixel 1
+default_floating_border  normal
+hide_edge_borders        none
+
+# gaps
+gaps inner    14
+gaps outer    -2
+smart_gaps    on
+smart_borders on
+
+#
+# Daemons:
+#
+
+exec --no-startup-id $polkit
+exec --no-startup-id $notifyd
+#exec --no-startup-id $bluetooth
+#exec --no-startup-id $clipmenud #use systemd unit instead
+exec --no-startup-id $powerman
+exec --no-startup-id $screenshotd
+
+exec --no-startup-id setxkbmap -layout $kb_layout -option "grp:alt_shift_toggle"
+
+# restore wallpaper, start compositor and conky
+exec --no-startup-id sh -c 'nitrogen --restore; sleep 1; picom -b; sleep 1; conky -d'
+
+#
+# Key bindings:
+#
+
+# move floating window with $mod+Mouse
+floating_modifier $mod
+
+#focus_follows_mouse no
+
+bindsym $mod+Shift+c     reload
+bindsym $mod+Shift+r     restart
+
+bindsym $mod+Shift+q     kill
+
+# change focus
+bindsym $mod+Left        focus left
+bindsym $mod+Down        focus down
+bindsym $mod+Up          focus up
+bindsym $mod+Right       focus right
+bindsym $mod+space       focus mode_toggle
+bindsym $mod+a           focus parent
+# move focused
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# change layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+# change split orientation
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+q split toggle
+
+bindsym $mod+f           fullscreen toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+b           border toggle 
+
+bindsym $mod+Shift+s sticky toggle
+
+bindsym $mod+minus       scratchpad show
+bindsym $mod+Shift+minus move scratchpad
+
+bindsym $mod+$alt+Right  workspace next
+bindsym $mod+$alt+Left   workspace prev
+
+# media
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioPlay        exec --no-startup-id playerctl play
+bindsym XF86AudioPause       exec --no-startup-id playerctl pause
+bindsym XF86AudioNext        exec --no-startup-id playerctl next
+bindsym XF86AudioPrev        exec --no-startup-id playerctl previous
+
+# rofi menu
+bindsym $mod+d               exec "rofi -modi drun,run -show drun"
+bindsym $mod+Tab             exec rofi -show combi
+bindsym $mod+Shift+v         exec rofi -show clipboard
+
+# notification center
+bindsym $mod+Escape exec --no-startup-id sh -c "kill -s USR1 $(pidof deadd-notification-center)"
+
+# screenshot
+bindsym Print       exec --no-startup-id $ss_clipboard
+bindsym Shift+Print exec --no-startup-id $ss_file
+bindsym $mod+Print  exec --no-startup-id $ss_interactive
+
+# shortcuts
+bindsym $mod+Return exec --no-startup-id $terminal
+bindsym $mod+F1     exec $fileman
+bindsym $mod+F2     exec $music
+bindsym $mod+F3     exec $browser
+bindsym $mod+$alt+m exec $mixer
+bindsym $mod+$alt+c exec --no-startup-id pkill picom
+
+# change workspace
+bindsym $mod+1       workspace $ws1
+bindsym $mod+2       workspace $ws2
+bindsym $mod+3       workspace $ws3
+bindsym $mod+4       workspace $ws4
+bindsym $mod+5       workspace $ws5
+bindsym $mod+6       workspace $ws6
+bindsym $mod+7       workspace $ws7
+bindsym $mod+8       workspace $ws8
+# move container to workspace
+bindsym $mod+Ctrl+1  move container to workspace $ws1
+bindsym $mod+Ctrl+2  move container to workspace $ws2
+bindsym $mod+Ctrl+3  move container to workspace $ws3
+bindsym $mod+Ctrl+4  move container to workspace $ws4
+bindsym $mod+Ctrl+5  move container to workspace $ws5
+bindsym $mod+Ctrl+6  move container to workspace $ws6
+bindsym $mod+Ctrl+7  move container to workspace $ws7
+bindsym $mod+Ctrl+8  move container to workspace $ws8
+# move container to workspace and switch to it
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+
+# workspace back and forth
+workspace_auto_back_and_forth yes
+#bindsym $mod+b                worksapce back_and_forth
+#bindsym $mod+Shift+b          workspace move container to back_and_foth; workspace back_and_foth
+
+
+#
+# Modes:
+#
+
+set $mode_resize "Resize: Right/Up/Down/Left"
+set $mode_exit   "Exit: (L)ock (E)xit Switch(U)ser (S)uspend (H)ibernate (R)eboot (P)oweroff"
+
+set $mode_gaps   "Gaps: (o) outer, (i) inner"
+set $mode_ogaps  "Outer Gaps: Plus/Minus/0 (local), Shift+Plus/Minus/0 (global)"
+set $mode_igaps  "Inner Gaps: Plus/Minus/0 (local), Shift+Plus/Minus/0 (global)"
+
+bindsym $mod+r mode $mode_resize
+mode $mode_resize {
+    set $resize_step_px 5
+    set $resize_step
+
+    bindsym j         resize shrink width $resize_step px or $resize_step ppt
+    bindsym k         resize grow height $resize_step px or $resize_step ppt
+    bindsym l         resize shrink height $resize_step px or $resize_step ppt
+    bindsym semicolon resize grow width $resize_step px or $resize_step ppt
+
+    bindsym Left      resize shrink width $resize_long_step px or $resize_long_step ppt
+    bindsym Down      resize grow height $resize_long_step px or $resize_long_step ppt
+    bindsym Up        resize shrink height $resize_long_step px or $resize_long_step ppt
+    bindsym Right     resize grow width $resize_long_step px or $resize_long_step ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+0 mode $mode_exit
+mode $mode_exit {
+    bindsym l exec --no-startup-id $lock; mode "default"
+    bindsym e exec --no-startup-id $logout; mode "default"
+    bindsym u exec --no-startup-id $switch_user; mode "default"
+    bindsym s exec --no-startup-id $suspend; mode "default"
+    bindsym h exec --no-startup-id $hibernate; mode "default"
+    bindsym r exec --no-startup-id $reboot; mode "default"
+    bindsym p exec --no-startup-id $poweroff; mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+g mode $mode_gaps
+mode $mode_gaps {
+    bindsym o mode $mode_ogaps
+    bindsym i mode $mode_igaps
+
+    bindsym Return mode "Return"
+    bindsym Escape mode "Escape"
+}
+mode $mode_igaps {
+    bindsym plus        gaps inner current plus 5
+    bindsym minus       gaps inner current minus 5
+    bindsym 0           gaps inner current set 0
+
+    bindsym Shift+plus  gaps inner all plus 5
+    bindsym Shift+minus gaps inner all minus 5
+    bindsym Shift+0     gaps inner all set 0
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+mode $mode_ogaps {
+    bindsym plus        gaps outer current plus 5
+    bindsym minus       gaps outer current minus 5
+    bindsym 0           gaps outer current set 0
+
+    bindsym Shift+plus  gaps outer all plus 5
+    bindsym Shift+minus gaps outer all minus 5
+    bindsym Shift+0     gaps outer all set 0
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+#
+# Application specific configuration:
+#
+
+for_window [title="File Transfer*"]       floating enable
+for_window [class="GParted"]              floating enable border normal
+for_window [class="Lightdm-settings"]     floating enable border normal
+for_window [class="Lxappearance"]         floating enable border normal
+for_window [class="Pavucontrol"]          floating enable border normal
+for_window [class="Qtconfig-qt4"]         floating enable border normal
+for_window [class="Xsensors"]             floating enable border normal
+for_window [class="scrcpy"]               floating enable border normal
+for_window [class="SimpleScreenRecorder"] floating enable border normal
+for_window [class="feh"]                  floating enable border normal
+for_window [class="qt5ct"]                floating enable border normal sticky enable
+for_window [class="Nitrogen"]             floating enable border normal sticky enable
+for_window [class="Galculator"]           floating enable border pixel 1
+for_window [title="alsamixer"]            floating enable border pixel 1 sticky enable
+#for_window [class="Pamac-manager"]       floating enable
+#for_window [class="Pamac-updater"]       floating enable
+#for_window [class="Pamac-installer"]     floating enable border normal sticky enable
+#for_window [class="octopi"]              floating enable
+#for_window [class="Xfburn"]              floating enable
+#for_window [class="Simple-scan"]         floating enable border normal
+#for_window [class="Skype"]               floating enable border normal
+#for_window [class="Timeset-gui"]         floating enable border normal
+#for_window [class="(?i)virtualbox"]      floating enable border normal
+#for_window [class="Oblogout"]            fullscreen enable
+
+for_window [class="flameshot"     title="Configuration"] floating enable border normal
+for_window [class="Google-chrome" window_role="pop-up" ] floating enable border normal
+
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+# Open applications on specific workspaces
+#assign [class="Pcmanfm"] $ws2
+
+#
+# Theme:
+# 
+#      class            border  backgr. text    indic.   child_border
+client.focused          $nord1  $nord0  $nord6  $nord8
+client.focused_inactive $nord2  $nord1  $nord5  $nord8
+client.unfocused        $nord3  $nord2  $nord4  $nord8
+client.urgent           $nord3  $nord11 $nord0  $nord8
+client.placeholder      #000000 #0c0c0c #ffffff #000000
+
+client.background       $nord0
+
+#
+# i3bar:
+#
+bar {
+  i3bar_command i3bar
+  status_command /usr/share/powerline/bindings/i3/powerline-i3.py
+  position bottom
+
+  bindsym button4 nop
+  bindsym button5 nop
+  font pango: $font $font_size_i3bar
+  strip_workspace_numbers no
+
+  colors {
+    background $nord0
+    statusline $nord8
+    separator  $nord9
+
+#                      border  backgr. text
+    focused_workspace  $nord8  $nord7  $nord0
+    active_workspace   $nord9  $nord3  $nord4
+    inactive_workspace $nord9  $nord3  $nord4
+    binding_mode       $nord9  $nord12 $nord0
+    urgent_workspace   $nord8  $nord11 $nord0
+  }
+}
+
