@@ -367,6 +367,7 @@ bar {
   status_command /usr/share/powerline/bindings/i3/powerline-i3.py
   position bottom
 
+  bindsym button3 exec rofi -show drun
   bindsym button4 nop
   bindsym button5 nop
   font pango: $font $font_size_i3bar
