@@ -114,6 +114,7 @@ exec --no-startup-id $notifyd
 #exec --no-startup-id $clipmenud #use systemd unit instead
 exec --no-startup-id $powerman
 exec --no-startup-id $screenshotd
+exec --no-startup-id touchegg
 
 exec --no-startup-id setxkbmap -layout $kb_layout -option "grp:alt_shift_toggle"
 
