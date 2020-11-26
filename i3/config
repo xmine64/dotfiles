@@ -325,6 +325,7 @@ for_window [class="scrcpy"]               floating enable border normal
 for_window [class="SimpleScreenRecorder"] floating enable border normal
 for_window [class="feh"]                  floating enable border normal
 for_window [class="Qemu-system-x86_64"]   floating enable border normal
+for_window [class="Protonvpn-gui"]        floating enable border normal
 for_window [class="qt5ct"]                floating enable border normal sticky enable
 for_window [class="Nitrogen"]             floating enable border normal sticky enable
 for_window [class="Galculator"]           floating enable border pixel 1
