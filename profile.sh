@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# QT Toolkit
+export QT_SELECT=5
+
 # QT/GTK theme
 export QT_QPA_PLATFORMTHEME="gtk2"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
