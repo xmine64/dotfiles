@@ -45,7 +45,7 @@ backup_or_link $PWD/gtkrc-2.0 $HOME/.gtkrc-2.0
 
 backup_or_link_dir $PWD/conky $HOME/.config/conky
 backup_or_link_dir $PWD/gtk-3.0 $HOME/.config/gtk-3.0
-backup_or_link_dir $PWD/fontconfig $HOME/.config/fontconfig/conf.d
+#backup_or_link_dir $PWD/fontconfig $HOME/.config/fontconfig/conf.d
 backup_or_link_dir $PWD/htop $HOME/.config/htop
 backup_or_link_dir $PWD/i3 $HOME/.config/i3
 backup_or_link_dir $PWD/powerline $HOME/.config/powerline
