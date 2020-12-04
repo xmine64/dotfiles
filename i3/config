@@ -111,7 +111,7 @@ smart_borders on
 
 exec --no-startup-id $polkit
 exec --no-startup-id $notifyd
-#exec --no-startup-id $bluetooth
+exec --no-startup-id $bluetooth
 #exec --no-startup-id $clipmenud #use systemd unit instead
 exec --no-startup-id $powerman
 exec --no-startup-id $screenshotd
