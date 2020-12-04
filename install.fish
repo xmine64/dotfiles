@@ -51,4 +51,4 @@ backup_or_link_dir $PWD/i3 $HOME/.config/i3
 backup_or_link_dir $PWD/powerline $HOME/.config/powerline
 backup_or_link_dir $PWD/rofi $HOME/.config/rofi
 backup_or_link_dir $PWD/deadd $HOME/.config/deadd
-
+backup_or_link_dir $PWD/alacritty $HOME/.config/alacritty

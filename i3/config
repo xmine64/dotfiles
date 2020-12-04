@@ -28,11 +28,11 @@ set $resize_step      5
 set $resize_long_step 10
 
 # apps
-set $terminal         st
+set $terminal         alacritty
 set $fileman          pcmanfm
 set $browser          google-chrome-stable
 set $music            deadbeef
-set $mixer            st -e 'alsamixer'
+set $mixer            alacritty -e 'alsamixer'
 
 # daemons
 set $polkit           /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -44,6 +44,7 @@ set $screenshotd      flameshot
 
 # screenshot
 set $ss_clipboard     flameshot full -c
+set $ss_window_clipboard flameshot full -c
 set $ss_file          flameshot full -p ~/Pictures/Screenshots/
 set $ss_interactive   flameshot gui
 
@@ -188,6 +189,7 @@ bindsym $mod+Escape exec --no-startup-id sh -c "kill -s USR1 $(pidof deadd-notif
 
 # screenshot
 bindsym Print       exec --no-startup-id $ss_clipboard
+bindsym $alt+Print  exec --no-startup-id $ss_window_clipboard
 bindsym Shift+Print exec --no-startup-id $ss_file
 bindsym $mod+Print  exec --no-startup-id $ss_interactive
 

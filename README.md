@@ -9,7 +9,7 @@ make a symlink to these config files. you should install required packages yours
 # Packages that I used
 * my installation script is written in fish shell's language,
 you need to install `fish` if you want to run it.
-* [My fork of Suckless Terminal](https://github.com/mmdmine/st)
+* ~~[My fork of Suckless Terminal](https://github.com/mmdmine/st)~~ Alacritty
 * `python`, `python-dbus`, `powerline-fonts`, `powerline`, `powerline-i3`
 * `rofi` (menu)
 * `deadd-notification-center` (for notification)
