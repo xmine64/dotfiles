@@ -13,5 +13,4 @@ export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 
 # Default console apps
 export PAGER=less
-export EDITOR=nvim
-
+export EDITOR=micro
