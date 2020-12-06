@@ -30,18 +30,18 @@ else if test $ROFI_RETV -eq 1
   switch $argv[1]
     case OK
       exit 0
-    case Exit i3
+    case "Exit i3"
       i3-msg -t run_command exit
-    case Shutdown
+    case "Shutdown"
       poweroff
-    case Reboot
+    case "Reboot"
       reboot
-    case Suspend
+    case "Suspend"
       dm-tool lock
       systemctl suspend
-    case Lock Screen
+    case "Lock Screen"
       dm-tool lock
-    case Switch User
+    case "Switch User"
       dm-tool switch-to-greeter
     case '*'
       rofi_msg "Error: Unsupported action '$argv[1]'."
