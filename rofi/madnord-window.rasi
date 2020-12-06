@@ -21,14 +21,18 @@
     nord13: #ebcb8b;
     nord14: #a3be8c;
     nord15: #b48ead;
+
+	// transparent
+    nord010: #2e344010;
+    nord250: #434c5e50;
     
-    background-color: @nord0;
+    background-color: @nord010;
     text-color: @nord4;
 }
 
 #window {
     border: 10px 10px 10px 10px;
-    border-color: @nord0;
+    border-color: @nord010;
     location: center;
 }
 
@@ -47,7 +51,7 @@
 
 #entry {
     padding: 5px 5px 5px 5px;
-    background-color: @nord2;
+    background-color: @nord250;
     text-color: @nord4;
 }
 
