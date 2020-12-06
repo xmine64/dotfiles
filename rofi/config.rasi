@@ -1,6 +1,6 @@
 configuration {
-  modi: "combi,drun,run,window,clipboard:env CM_LAUNCHER=rofi-script clipmenu,power:~/.config/rofi/power-menu.fish";
-  combi-modi: "window,drun";
+  modi: "combi,drun,file-browser,clipboard:env CM_LAUNCHER=rofi-script clipmenu,power:~/.config/rofi/power-menu.fish";
+  combi-modi: "window,drun,power";
 
   font: "monospace 12";
 
