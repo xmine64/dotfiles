@@ -37,7 +37,7 @@ set $mixer            alacritty -e 'alsamixer'
 # daemons
 set $polkit           /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 set $notifyd          deadd-notification-center
-set $bluetooth        blueman
+set $bluetooth        blueman-applet
 set $clipman          clipmenud
 set $powerman         xfce4-power-manager
 set $screenshotd      flameshot
