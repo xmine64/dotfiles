@@ -106,7 +106,6 @@ exec --no-startup-id $bluetooth
 #exec --no-startup-id $clipmenud #use systemd unit instead
 exec --no-startup-id $powerman
 exec --no-startup-id $screenshotd
-exec --no-startup-id touchegg
 
 exec --no-startup-id setxkbmap -layout $kb_layout -option "grp:alt_shift_toggle"
 
@@ -171,11 +170,12 @@ bindsym XF86AudioNext        exec --no-startup-id playerctl next
 bindsym XF86AudioPrev        exec --no-startup-id playerctl previous
 
 # rofi menu
-bindsym $mod+0               exec rofi -show power
-bindsym $mod+d               exec "rofi -modi drun,run -show drun"
+bindsym $mod+0               exec rofi -show power -theme madnord-grid
+bindsym $mod+d               exec rofi -modi run -show run -theme madnord-dmenu
 bindsym $mod+Tab             exec rofi -show combi
-bindsym $mod+Shift+v         exec rofi -show clipboard
-bindsym $mod+greater         exec rofimoji
+bindsym $alt+Tab             exec rofi -modi window -show window -theme madnord-window
+bindsym $mod+Shift+v         exec rofi -show clipboard -theme madnord-list
+bindsym $mod+greater         exec rofimoji --rofi-args="-theme madnord-list"
 
 # notification center
 bindsym $mod+Escape exec --no-startup-id sh -c "kill -s USR1 $(pidof deadd-notification-center)"
@@ -233,7 +233,6 @@ workspace_auto_back_and_forth yes
 #
 
 set $mode_resize "Resize: Right/Up/Down/Left"
-set $mode_exit   "Exit: (L)ock (E)xit Switch(U)ser (S)uspend (H)ibernate (R)eboot (P)oweroff"
 
 set $mode_gaps   "Gaps: (o) outer, (i) inner"
 set $mode_ogaps  "Outer Gaps: Plus/Minus/0 (local), Shift+Plus/Minus/0 (global)"

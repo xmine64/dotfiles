@@ -66,8 +66,8 @@
     fixed-height: true;
     scrollbar: true;
     spacing: 4px;
-    lines: 8;
-    columns: 2;
+    lines: 10;
+    columns: 1;
 }
 
 #scrollbar {
@@ -104,7 +104,7 @@
 }
 
 #element-icon {
-    size: 32px;
+    size: 0px;
 }
 
 #element-text {

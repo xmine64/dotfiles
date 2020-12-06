@@ -66,8 +66,9 @@
     fixed-height: true;
     scrollbar: true;
     spacing: 4px;
-    lines: 8;
-    columns: 2;
+    lines: 3;
+    columns: 5;
+    dynamic: true;
 }
 
 #scrollbar {
@@ -100,14 +101,15 @@
 }
 
 #element {
-	orientation: horizontal;
+	orientation: vertical;
 }
 
 #element-icon {
-    size: 32px;
+    size: 128px;
 }
 
 #element-text {
+    expand: true;
     padding: 5px 5px 5px 5px;
     vertical-align: 1;
 }

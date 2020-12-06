@@ -29,13 +29,13 @@
 #window {
     border: 10px 10px 10px 10px;
     border-color: @nord0;
-    location: north;
+    location: center;
 }
 
 #mainbox {
     padding: 2px 2px 2px 2px;
     orientation: vertical;
-    children: [inputbar, message, listview, sidebar];
+    children: [inputbar, message, listview];
 }
 
 #inputbar {
@@ -63,11 +63,11 @@
 #listview {
     padding: 5px 5px 5px 5px;
     layout: vertical;
-    fixed-height: true;
     scrollbar: true;
     spacing: 4px;
-    lines: 8;
-    columns: 2;
+    lines: 2;
+    columns: 3;
+    dynamic: true;
 }
 
 #scrollbar {
@@ -100,26 +100,14 @@
 }
 
 #element {
-	orientation: horizontal;
+	orientation: vertical;
 }
 
 #element-icon {
-    size: 32px;
+    size: 256px;
 }
 
 #element-text {
     padding: 5px 5px 5px 5px;
     vertical-align: 1;
-}
-
-#sidebar {
-
-}
-
-#button {
-    padding: 5px 5px 5px 5px;
-}
-
-#button.selected {
-    background-color: @nord3;
 }
