@@ -12,6 +12,7 @@ you need to install `fish` if you want to run it.
 * ~~[My fork of Suckless Terminal](https://github.com/mmdmine/st)~~ Alacritty
 * `python`, `python-dbus`, `powerline-fonts`, `powerline`, `powerline-i3`
 * `rofi` (menu)
+* `rofimoji` (emoji picker)
 * `deadd-notification-center` (for notification)
 * `nitrogen` (wallpaper)
 * `i3-gaps` (if you use i3-wm, you MUST change i3 config)

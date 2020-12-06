@@ -48,15 +48,6 @@ set $ss_window_clipboard flameshot full -c
 set $ss_file          flameshot full -p ~/Pictures/Screenshots/
 set $ss_interactive   flameshot gui
 
-# exit commands
-set $lock             i3lock
-set $logout           i3-msg -t run_command exit
-set $switch_user      notify-send "SwitchUser is not implemented"
-set $suspend          systemctl suspend
-set $hibernate        systemctl hibernate
-set $reboot           systemctl reboot
-set $poweroff         systemctl poweroff
-
 # workspaces
 set $ws1 1
 set $ws2 2
@@ -180,9 +171,11 @@ bindsym XF86AudioNext        exec --no-startup-id playerctl next
 bindsym XF86AudioPrev        exec --no-startup-id playerctl previous
 
 # rofi menu
+bindsym $mod+0               exec rofi -show power
 bindsym $mod+d               exec "rofi -modi drun,run -show drun"
 bindsym $mod+Tab             exec rofi -show combi
 bindsym $mod+Shift+v         exec rofi -show clipboard
+bindsym $mod+greater         exec rofimoji
 
 # notification center
 bindsym $mod+Escape exec --no-startup-id sh -c "kill -s USR1 $(pidof deadd-notification-center)"
@@ -260,20 +253,6 @@ mode $mode_resize {
     bindsym Down      resize grow height $resize_long_step px or $resize_long_step ppt
     bindsym Up        resize shrink height $resize_long_step px or $resize_long_step ppt
     bindsym Right     resize grow width $resize_long_step px or $resize_long_step ppt
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-bindsym $mod+0 mode $mode_exit
-mode $mode_exit {
-    bindsym l exec --no-startup-id $lock; mode "default"
-    bindsym e exec --no-startup-id $logout; mode "default"
-    bindsym u exec --no-startup-id $switch_user; mode "default"
-    bindsym s exec --no-startup-id $suspend; mode "default"
-    bindsym h exec --no-startup-id $hibernate; mode "default"
-    bindsym r exec --no-startup-id $reboot; mode "default"
-    bindsym p exec --no-startup-id $poweroff; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
